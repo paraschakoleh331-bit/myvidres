@@ -3,31 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="mobile-web-app-capable" content="yes">
-    
     <link rel="apple-touch-icon" href="icon.png">
     <title>VideoApp</title>
     <style>
-        * { margin: 0; padding: 0; }
-        
-        html, body {
-            width: 100%;
-            height: 100%;
-            background-color: black;
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background: black;
             overflow: hidden;
             position: fixed;
         }
 
         video {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             width: 100vw;
-            /* Ми робимо відео значно довшим, щоб воно "пробило" системну зону */
-            height: 110vh; 
+            /* Обчислюємо висоту: 100% екрана + відступ нижньої безпечної зони */
+            height: calc(100vh + env(safe-area-inset-bottom));
             object-fit: cover;
             pointer-events: none;
         }
@@ -38,11 +32,7 @@
         <source src="https://cdn.discordapp.com/attachments/1434263985108156579/1489566233094520923/IMG_2728.MP4?ex=69d0e228&is=69cf90a8&hm=3f662f16cbb0cbdba719a528f58c59a5756539926092523dc7233d68d4f52fc4&" type="video/mp4">
     </video>
     <script>
-        document.body.onclick = () => {
-            document.getElementById('v').play();
-        };
-        // Фікс для примусового приховування панелей
-        window.scrollTo(0, 1);
+        document.body.onclick = () => document.getElementById('v').play();
     </script>
 </body>
 </html>
