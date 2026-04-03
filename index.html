@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     
     <link rel="manifest" href="manifest.json">
     
@@ -12,15 +12,15 @@
     
     <title>App</title>
     <style>
-        /* 4. Прибираємо системні відступи */
+        /* Обнуляємо всі системні рамки */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background: black;
+            background-color: black;
             overflow: hidden;
-            position: fixed; /* Щоб екран не смикався */
+            position: fixed; /* Запобігає випадковому скролу */
         }
 
         video {
@@ -29,22 +29,31 @@
             left: 0;
             width: 100vw;
             
-            /* 5. ФОРМУЛА ПЕРЕКРИТТЯ: динамічна висота + нижня зона */
+            /* ФОРМУЛА ЗІ СКРИНШОТА: динамічна висота + відступ знизу */
+            /* 100dvh — реальна висота вікна, env — висота чорної смуги */
             height: calc(100dvh + env(safe-area-inset-bottom));
             
-            /* Змушуємо відео заповнити все, включаючи Safe Area */
+            /* cover — щоб відео заповнило весь простір без дірок */
             object-fit: cover; 
-            pointer-events: none;
+            
+            /* Щоб кліки проходили крізь відео на body */
+            pointer-events: none; 
+            -webkit-user-select: none;
         }
     </style>
 </head>
 <body>
-    <video id="v" autoplay loop muted playsinline>
+    <video id="v" autoplay loop muted playsinline webkit-playsinline>
         <source src="https://cdn.discordapp.com/attachments/1434263985108156579/1489566233094520923/IMG_2728.MP4?ex=69d0e228&is=69cf90a8&hm=3f662f16cbb0cbdba719a528f58c59a5756539926092523dc7233d68d4f52fc4&" type="video/mp4">
     </video>
+
     <script>
-        // Запуск відео при першому торканні (вимога iOS)
-        document.body.onclick = () => document.getElementById('v').play();
+        // iOS блокує автоплей, якщо телефон у режимі енергозбереження.
+        // Цей скрипт запустить відео при першому ж торканні екрана.
+        document.body.onclick = () => {
+            const video = document.getElementById('v');
+            video.play();
+        };
     </script>
 </body>
 </html>
