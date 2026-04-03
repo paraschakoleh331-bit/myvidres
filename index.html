@@ -6,28 +6,27 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon.png">
-    <title>VideoApp</title>
+    <title>App</title>
     <style>
-        /* Прибираємо всі системні рамки */
         html, body {
             margin: 0; padding: 0;
-            width: 100vw; height: 100vh;
-            background-color: black;
+            width: 100%; height: 100%;
+            background: black;
             overflow: hidden;
             position: fixed;
-            top: 0; left: 0;
         }
 
         video {
-            position: absolute;
-            /* Приклеюємо до самого верху */
-            top: 0; 
+            position: fixed;
+            /* Жорстка прив'язка до кутів */
+            top: 0;
             left: 0;
+            right: 0;
+            /* Від'ємний відступ знизу буквально виштовхує відео за межі рамок */
+            bottom: -100px; 
             width: 100vw;
-            /* Робимо висоту на 5% більшою за екран */
-            height: 105vh; 
-            /* 'fill' примусово розтягне відео по всій заданій висоті */
-            object-fit: fill; 
+            height: calc(100vh + 100px);
+            object-fit: cover;
             pointer-events: none;
         }
     </style>
