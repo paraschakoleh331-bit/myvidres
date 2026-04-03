@@ -2,33 +2,32 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon.png">
-    <title>App</title>
+    <title>VideoApp</title>
     <style>
-        body, html {
+        /* Прибираємо всі системні рамки */
+        html, body {
             margin: 0; padding: 0;
             width: 100vw; height: 100vh;
-            background: black;
+            background-color: black;
             overflow: hidden;
             position: fixed;
+            top: 0; left: 0;
         }
 
         video {
             position: absolute;
-            /* Центруємо відео */
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            
-            /* Робимо відео БІЛЬШИМ за екран, щоб воно гарантовано перекрило смуги */
-            min-width: 100%;
-            min-height: 105%; 
+            /* Приклеюємо до самого верху */
+            top: 0; 
+            left: 0;
             width: 100vw;
-            height: 105vh; /* +5% висоти, щоб зайти ПІД смужку внизу */
-            
-            object-fit: cover;
+            /* Робимо висоту на 5% більшою за екран */
+            height: 105vh; 
+            /* 'fill' примусово розтягне відео по всій заданій висоті */
+            object-fit: fill; 
             pointer-events: none;
         }
     </style>
