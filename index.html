@@ -8,25 +8,22 @@
     <link rel="apple-touch-icon" href="icon.png">
     <title>VideoApp</title>
     <style>
-        /* Прибираємо всі відступи та фіксуємо фон */
+        /* Вимикаємо всі системні відступи */
         html, body {
             margin: 0; padding: 0;
-            width: 100%; height: 100%;
+            width: 100vw; height: 100vh;
             background-color: black;
             overflow: hidden;
-            display: flex; /* Центрування через Flexbox */
-            align-items: center;
-            justify-content: center;
+            position: fixed;
+            top: 0; left: 0;
         }
         video {
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%); /* Математично точний центр */
-            min-width: 100%; 
-            min-height: 100%;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            /* 'fill' змусить відео розтягнутися рівно по краях екрана */
+            object-fit: fill; 
             pointer-events: none;
         }
     </style>
@@ -36,10 +33,8 @@
         <source src="https://cdn.discordapp.com/attachments/1434263985108156579/1489566233094520923/IMG_2728.MP4?ex=69d0e228&is=69cf90a8&hm=3f662f16cbb0cbdba719a528f58c59a5756539926092523dc7233d68d4f52fc4&" type="video/mp4">
     </video>
     <script>
-        // Запуск відео при дотику
         document.body.onclick = () => {
-            const video = document.getElementById('v');
-            video.play();
+            document.getElementById('v').play();
         };
     </script>
 </body>
