@@ -8,23 +8,13 @@
     <link rel="apple-touch-icon" href="icon.png">
     <title>VideoApp</title>
     <style>
-        /* Вимикаємо всі системні відступи */
-        html, body {
-            margin: 0; padding: 0;
-            width: 100vw; height: 100vh;
-            background-color: black;
-            overflow: hidden;
-            position: fixed;
-            top: 0; left: 0;
+        body, html { 
+            margin: 0; padding: 0; width: 100%; height: 100%; 
+            overflow: hidden; background: black; 
         }
-        video {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            /* 'fill' змусить відео розтягнутися рівно по краях екрана */
-            object-fit: fill; 
-            pointer-events: none;
+        video { 
+            width: 100vw; height: 100vh; 
+            object-fit: cover; 
         }
     </style>
 </head>
@@ -33,9 +23,7 @@
         <source src="https://cdn.discordapp.com/attachments/1434263985108156579/1489566233094520923/IMG_2728.MP4?ex=69d0e228&is=69cf90a8&hm=3f662f16cbb0cbdba719a528f58c59a5756539926092523dc7233d68d4f52fc4&" type="video/mp4">
     </video>
     <script>
-        document.body.onclick = () => {
-            document.getElementById('v').play();
-        };
+        document.body.onclick = () => document.getElementById('v').play();
     </script>
 </body>
 </html>
