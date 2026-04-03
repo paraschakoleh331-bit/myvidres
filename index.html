@@ -12,7 +12,7 @@
     
     <title>App</title>
     <style>
-        /* Обнуляємо всі системні рамки */
+        /* Обнуляємо відступи та фіксуємо екран */
         html, body {
             margin: 0;
             padding: 0;
@@ -20,7 +20,7 @@
             height: 100%;
             background-color: black;
             overflow: hidden;
-            position: fixed; /* Запобігає випадковому скролу */
+            position: fixed;
         }
 
         video {
@@ -29,15 +29,15 @@
             left: 0;
             width: 100vw;
             
-            /* ФОРМУЛА ЗІ СКРИНШОТА: динамічна висота + відступ знизу */
-            /* 100dvh — реальна висота вікна, env — висота чорної смуги */
+            /* ФОРМУЛА: Динамічна висота + відступ нижньої полоски */
+            /* 100dvh автоматично підлаштовується під прихований тулбар */
             height: calc(100dvh + env(safe-area-inset-bottom));
             
-            /* cover — щоб відео заповнило весь простір без дірок */
+            /* cover заповнює екран без спотворення пропорцій */
             object-fit: cover; 
             
-            /* Щоб кліки проходили крізь відео на body */
-            pointer-events: none; 
+            /* Вимикаємо взаємодію, щоб кліки йшли на body */
+            pointer-events: none;
             -webkit-user-select: none;
         }
     </style>
@@ -48,11 +48,9 @@
     </video>
 
     <script>
-        // iOS блокує автоплей, якщо телефон у режимі енергозбереження.
-        // Цей скрипт запустить відео при першому ж торканні екрана.
+        // Запуск відео при дотику (необхідно для iOS)
         document.body.onclick = () => {
-            const video = document.getElementById('v');
-            video.play();
+            document.getElementById('v').play();
         };
     </script>
 </body>
